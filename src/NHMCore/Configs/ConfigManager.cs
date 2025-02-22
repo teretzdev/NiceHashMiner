@@ -23,7 +23,7 @@ namespace NHMCore.Configs
         private static GeneralConfig GeneralConfig { get; set; } = new GeneralConfig();
 
         // Developer option to disable KYC checks locally
-        public static bool DeveloperDisableKYC => GeneralConfig.DeveloperDisableKYC;
+        public static bool DeveloperDisableKYC => GeneralConfig.DeveloperDisableKYC ?? false;
 
         private static string GeneralConfigPath => Paths.ConfigsPath("General.json");
         private static string ScheduleConfigPath => Paths.ConfigsPath("Schedule.json");
@@ -88,6 +88,10 @@ namespace NHMCore.Configs
                 Logger.Info(Tag, "Web3 wallet connection logic will be implemented here.");
                 // Placeholder for smart contract interaction logic
                 Logger.Info(Tag, "Smart contract interaction logic will be implemented here.");
+            }
+            else
+            {
+                Logger.Info(Tag, "KYC checks are enforced.");
             }
 
             var asmVersion = new Version(NHMApplication.ProductVersion);

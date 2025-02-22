@@ -80,6 +80,14 @@
                                         Description="This option disables KYC checks locally for development purposes."
                                         Visibility="{Binding Source={x:Static local:BuildOptions.BUILD_TAG}, Converter={StaticResource BuildTagToVisibilityConverter}, ConverterParameter=DEVELOPMENT}" />
 
+            <!-- Developer Option: Disable KYC Checks -->
+            <!-- This toggle is only visible in development builds -->
+            <local:SettingsCheckBoxItem Margin="0,24,0,0" 
+                                        Enabled="{Binding GeneralConfig.DisableKYCLocally, Mode=TwoWay}" 
+                                        Label="Disable KYC Checks (Development Only)" 
+                                        Description="This option disables KYC checks locally for development purposes."
+                                        Visibility="{Binding Source={x:Static local:BuildOptions.BUILD_TAG}, Converter={StaticResource BuildTagToVisibilityConverter}, ConverterParameter=DEVELOPMENT}" />
+
             <local:SettingsCheckBoxItem x:Name="minProfitToggleButton" Margin="0,24,0,0" Enabled="{Binding MiningProfitSettings.MineRegardlessOfProfit}"
                                             Label="Mine Regardless Of Profit"
                                         

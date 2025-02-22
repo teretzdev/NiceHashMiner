@@ -141,6 +141,14 @@ namespace NHMCore.Mining.Plugins
         // Placeholder for smart contract interaction logic
         // Future implementation: Interact with blockchain smart contracts for plugin-specific functionalities.
         // Example: Fetch mining rewards or submit mining proofs.
+
+        // Placeholder for Web3 wallet connection logic
+        // Future implementation: Establish connection to a Web3 wallet for plugin-specific operations.
+        // Example: Connect to MetaMask or other Web3 providers.
+
+        // Placeholder for smart contract interaction logic
+        // Future implementation: Interact with blockchain smart contracts for plugin-specific functionalities.
+        // Example: Fetch mining rewards or submit mining proofs.
         public bool InitPluginContainer()
         {
             if (IsInitialized) return true;
