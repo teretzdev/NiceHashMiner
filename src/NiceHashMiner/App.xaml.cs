@@ -215,11 +215,21 @@ namespace NiceHashMiner
                 return;
             }
 
-            var quickMinerBTC = CredentialsSettings.Instance.QuickMinerMiningAddress;
-            if (CredentialValidators.ValidateBitcoinAddress(quickMinerBTC) && !CredentialsSettings.Instance.IsBitcoinAddressValid)
+            // Check if the developer option is enabled to bypass KYC checks
+            if (isDevelop)
             {
-                var btcMigration = new QuickMinerAddressMigrationWindow { };
-                btcMigration.ShowDialog();
+                Logger.Info(Tag, "Developer mode enabled. Bypassing KYC checks.");
+                // Placeholder for Web3 wallet connection logic
+                // TODO: Implement Web3 wallet connection and smart contract interaction here
+            }
+            else
+            {
+                var quickMinerBTC = CredentialsSettings.Instance.QuickMinerMiningAddress;
+                if (CredentialValidators.ValidateBitcoinAddress(quickMinerBTC) && !CredentialsSettings.Instance.IsBitcoinAddressValid)
+                {
+                    var btcMigration = new QuickMinerAddressMigrationWindow { };
+                    btcMigration.ShowDialog();
+                }
             }
 
             bool? loginSuccess = null;
@@ -250,8 +260,8 @@ namespace NiceHashMiner
         {
             Exception ex = e.Exception;
             Exception ex_inner = ex.InnerException;
-            string msg = ex.Message + "\n\n" + ex.StackTrace + "\n\n" +
-                "Inner Exception:\n" + ex_inner.Message + "\n\n" + ex_inner.StackTrace;
+            string msg = ex.Message + "\\n\\n" + ex.StackTrace + "\\n\\n" +
+                "Inner Exception:\\n" + ex_inner.Message + "\\n\\n" + ex_inner.StackTrace;
             MessageBox.Show(msg, "Application Halted!", MessageBoxButton.OK);
             e.Handled = true;
             Current.Shutdown();

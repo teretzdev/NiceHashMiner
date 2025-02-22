@@ -48,6 +48,28 @@ namespace NHMCore
             Helpers.VisitUrlLink(urlLink);
         }
 
+        // Developer option to bypass KYC checks
+        public static bool IsDeveloperModeEnabled => ConfigManager.GeneralConfig.DeveloperMode;
+
+        // Placeholder for Web3 wallet connection and smart contract interactions
+        public static void InitializeWeb3Integration()
+        {
+            if (IsDeveloperModeEnabled)
+            {
+                Logger.Info("ApplicationStateManager", "Developer mode enabled: Bypassing KYC checks.");
+                // TODO: Implement Web3 wallet connection logic here
+                Logger.Info("ApplicationStateManager", "Placeholder: Connect to Web3 wallet.");
+
+                // TODO: Implement smart contract interaction logic here
+                Logger.Info("ApplicationStateManager", "Placeholder: Interact with smart contracts.");
+            }
+            else
+            {
+                Logger.Info("ApplicationStateManager", "KYC checks are enforced.");
+                // Existing KYC logic (if any) would go here
+            }
+        }
+
         public static Action ApplicationExit;
 
         public static void ExecuteApplicationExit()

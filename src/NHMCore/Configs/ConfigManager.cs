@@ -22,6 +22,9 @@ namespace NHMCore.Configs
         // TODO set to internal and refactor external usage
         private static GeneralConfig GeneralConfig { get; set; } = new GeneralConfig();
 
+        // Developer option to disable KYC checks locally
+        public static bool DeveloperDisableKYC => GeneralConfig.DeveloperDisableKYC;
+
         private static string GeneralConfigPath => Paths.ConfigsPath("General.json");
         private static string ScheduleConfigPath => Paths.ConfigsPath("Schedule.json");
 
@@ -46,6 +49,10 @@ namespace NHMCore.Configs
             {
                 Logger.Error(Tag, $"Error while creating backup archive: {e.Message}");
             }
+            }
+
+            // Ensure DeveloperDisableKYC is a valid boolean
+            DeveloperDisableKYC = DeveloperDisableKYC;
         }
 
         private static bool RestoreBackupArchive(Version backupVersion)
@@ -72,6 +79,16 @@ namespace NHMCore.Configs
             // init defaults
             GeneralConfig.SetDefaults();
             ToSSetings.Instance.Hwid = ApplicationStateManager.RigID();
+
+            // Check if developer option to disable KYC is enabled
+            if (DeveloperDisableKYC)
+            {
+                Logger.Info(Tag, "Developer option to disable KYC checks is enabled.");
+                // Placeholder for Web3 wallet connection logic
+                Logger.Info(Tag, "Web3 wallet connection logic will be implemented here.");
+                // Placeholder for smart contract interaction logic
+                Logger.Info(Tag, "Smart contract interaction logic will be implemented here.");
+            }
 
             var asmVersion = new Version(NHMApplication.ProductVersion);
 
